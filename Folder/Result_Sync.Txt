@@ -1,0 +1,3 @@
+this is the result : Hay c est un joli test de First.TXT
+ , Hay c est un joli test de Second.TXTthis is the result : Hay c est un joli test de First.TXT
+ , Hay c est un joli test de Second.TXT
