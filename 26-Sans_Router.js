@@ -1,7 +1,8 @@
 const express =require('express');
-const app=express();
 const morgan =require('morgan');
-const router_people=require('./routes/People');
+
+const app=express();
+
 app.use(express.static('./methods-public'));// integre tout Ndaaaaa Static assets
 
 app.use(express.urlencoded({extended : false})); // l acces au donnnes envoye par post 
@@ -10,7 +11,6 @@ app.use(express.json()); // Preparation a recevoir des données de format json (
 
 app.use(morgan('tiny')); // Middleware Nadiii (method , route, statuts)
 
-app.use('/api/people',router_people.router);
 
 const data=require('./20-data');
 

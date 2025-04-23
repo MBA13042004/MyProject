@@ -2,7 +2,7 @@ const express=require('express');
 const app=express();
 //const path=require('path');
 
-app.use(express.static('./navbar-app'));// had commande kat3awed dak if else if else id Ndaaaaaa 
+app.use(express.static('./navbar-app'));// had commande kat3awed dak if else if else id Ndaaaaaa ou had commande c est une Middleware Ndaaaaaaaaaaaaaa au carré
 
 
 // index.html will be considered as route dans : express.static('./navbar-app') Ndaa

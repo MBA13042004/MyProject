@@ -1,54 +1,13 @@
-const express =require('express');
-const app=express();
-const morgan =require('morgan');
-const router_people=require('./routes/People');
-app.use(express.static('./methods-public'));// integre tout Ndaaaaa Static assets
-
-app.use(express.urlencoded({extended : false})); // l acces au donnnes envoye par post 
-
-app.use(express.json()); // Preparation a recevoir des données de format json (Postman )
-
-app.use(morgan('tiny')); // Middleware Nadiii (method , route, statuts)
-
-app.use('/api/people',router_people.router);
-
-const data=require('./20-data');
-
-app.get('/',(req,res)=>{
-    res.status(200).json({success:true,date:data.people});
-})
-
-// From Post  
-
-app.post('/login',(req,res)=>{
-    const Username=req.body.Username;
-    
-    if(Username){
-        if(Username === 'Mosab'){
-            return res.send('hey , '+Username);
-  
-        }
-        else{
-        return res.send("Non Autorisé");
-       
-
-       
-    }}
-    else{
-        
-         return res.send("champs insufusant");
-        
+const express=require('express');
 
 
-    }
-    
-})
-
+const router=express.Router();
+const data=require('../20-data');
 //--------------Get And Post From----- Axios --------- NOT THE SAME METHODE ARE DIFFERENTS
 
 //  Reponse de Get :
 
-app.get('/api/people', (req, res) => {  // la reponse de Axios Ndaaaaa
+router.get('/', (req, res) => {  // la reponse de Axios Ndaaaaa
     res.status(200).json({success:true,
     data:data.people});
 
@@ -58,7 +17,7 @@ app.get('/api/people', (req, res) => {  // la reponse de Axios Ndaaaaa
 //  Reponse de Post :
 
 
-app.post('/api/people', (req, res) => {  // la reponse de Axios Ndaaaaa
+router.post('/', (req, res) => {  // la reponse de Axios Ndaaaaa
     const name=req.body.nom; // ce nom est celui qui va etre capter
     if(name){ return res.status(200).json({success:true,
        person:[
@@ -75,7 +34,7 @@ app.post('/api/people', (req, res) => {  // la reponse de Axios Ndaaaaa
 })
 
 
-app.post('/api/People/postman',(req,res)=>{
+router.post('/api/People/postman',(req,res)=>{
     const name=req.body.nom;
     if(name){
         res.status(200).json({status:true,data:[...data.people,name]})
@@ -89,7 +48,7 @@ app.post('/api/People/postman',(req,res)=>{
 })
 
 
-app.get('/api/people/:IdP',(req,res)=>{
+router.get('/api/people/:IdP',(req,res)=>{
    const IdP=req.params.IdP;
     const Pepole=data.people.find((person)=> person.id===Number(IdP));
     if(Pepole){
@@ -105,7 +64,7 @@ app.get('/api/people/:IdP',(req,res)=>{
 
 //---------------------------Put-----------------------
 
-app.put('/api/people/:IdP',(req,res)=>{
+router.put('/api/people/:IdP',(req,res)=>{
     const IdP=req.params.IdP;
     const name=req.body.name;
     const personne=data.people.find((personne)=> personne.id===Number(IdP));
@@ -125,7 +84,7 @@ app.put('/api/people/:IdP',(req,res)=>{
 
 
 //-------------------------Delete---------------
-app.delete('/api/people/:IdP',(req,res)=>{
+router.delete('/api/people/:IdP',(req,res)=>{
     const IdP=req.params.IdP;
     const personne=data.people.find((personne)=> personne.id===Number(IdP));
     if(personne){
@@ -139,13 +98,4 @@ app.delete('/api/people/:IdP',(req,res)=>{
     }
 })
 
-
-
-
-app.listen(5000,()=>{
-    console.log("App Listening on Port : 5000");  
-})
-
-
-
-    
+module.exports={router};

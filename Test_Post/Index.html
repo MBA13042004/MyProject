@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test_Post</title>
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<fieldset id="idf">
+    <center><legend >Login</legend></center>
+     <form action="/login" method="post"><!-- ce login doit etre le path dans la mehode app.post('login')  Ndaaa -->
+
+     <table>
+       <tr>
+          <td>
+            <label for="idu">User</label>
+          </td>
+          <td>
+            <input type="text" name="Username" id="idu">
+          </td>
+       </tr>
+
+       
+       <tr>
+         <td>
+          <label for="idp">Password</label>
+         </td>
+         <td>
+          <input type="password" name="Password" id="idp">
+         </td>
+        </tr>
+
+
+        <tr>
+            <td>
+             <input type="submit" value="Submit">
+            </td>
+            <td>
+             <input type="reset" value="Reset">
+            </td>
+        </tr>
+
+
+
+     </table>
+
+    </form>   
+</fieldset>
+    
+</body>
+</html>
